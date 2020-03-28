@@ -38,16 +38,7 @@ class Controller {
         res.status(200).send(models);
       })
       .catch(error => {
-        let details = {};
-        if (error.message) {
-          details.message = error.message;
-          details.stack = error.stack;
-        }
-
-        if (error.response) {
-          details.message = error.response.message;
-        }
-
+        let details = this.getErrorDetails(error);
         res.status(400).send({
           message: "Could not fetch the models from the server",
           error: details,
@@ -70,7 +61,11 @@ class Controller {
         res.status(200).send(model);
       })
       .catch(error => {
-        res.status(400).send({ message: "Could not retrieve the model from the server" });
+        let details = this.getErrorDetails(error);
+        res.status(400).send({
+          message: "Could not retrieve the model from the server",
+          error: details
+        });
       });
   };
 
@@ -80,10 +75,14 @@ class Controller {
     new this.model()
       .save(data, { method: 'insert' })
       .then((result) => {
-        res.status(200).send(result);
+        res.status(201).send(result);
       })
       .catch(error => {
-        res.status(400).send({ message: 'Error, Could not insert model' });
+        let details = this.getErrorDetails(error);
+        res.status(400).send({
+          message: "Could not insert model",
+          error: details,
+        });
       });
   };
 
@@ -94,10 +93,14 @@ class Controller {
     new this.model({ id })
       .save(data, { patch: true })
       .then((result) => {
-        res.status(200).send(result);
+        res.status(201).send(result);
       })
       .catch(error => {
-        res.status(400).send({ message: "Error, could not update model" });
+        let details = this.getErrorDetails(error);
+        res.status(400).send({
+          message: "Could not update model",
+          error: details,
+        });
       });
   };
 
@@ -107,10 +110,14 @@ class Controller {
     new this.model({ id })
       .destroy()
       .then((model) => {
-        res.status(200).send({ message: "Model deleted" });
+        res.status(201).send({ message: "Model deleted" });
       })
       .catch(error => {
-        res.status(400).send({ result: "Could not delete the model" });
+        let details = this.getErrorDetails(error);
+        res.status(400).send({
+          message: "Could not delete the model",
+          error: details,
+        });
       });
   };
 
@@ -189,6 +196,20 @@ class Controller {
       this.attribs.withRelated = this.attribs.withRelated || [];
       this.attribs.withRelated.push(relation);
     });
+  }
+
+  getErrorDetails(error) {
+    let details = {};
+    if (error.message) {
+      details.message = error.message;
+      details.stack = error.stack;
+    }
+
+    if (error.response && !details.message) {
+      details.message = error.response.message;
+    }
+
+    return details;
   }
 }
 

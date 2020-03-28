@@ -6,7 +6,9 @@ exports.seed = function(knex, Promise) {
 
   for (let i = 0; i < 40; i++) {
     models.push({
-      ques_answer: faker.lorem.words().slice(0, 1000),
+      title: faker.lorem.sentence().slice(0, 200),
+      type: parseInt(Math.random() * 4 + 1),
+      choice: faker.lorem.words().slice(0, 400),
 
     });
   }
