@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./main-api-doc.json');
 
 const apiRoute = require('./routes/api');
 const Scheduler = require('./scheduler');
@@ -30,6 +32,9 @@ app.get('/', function(req, res) {
       },
     });
 });
+
+// SWAGGER DOCUMENTATION --
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // API ENDPOINTS --
 app.use('/api', apiRoute);
