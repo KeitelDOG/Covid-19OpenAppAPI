@@ -1,0 +1,15 @@
+{
+  "openapi":"3.0.0",
+  "info": {
+    "title":"MyApp API",
+    "description":"MyAPP Application Programming Interface (API) Documentation",
+    "contact": {
+      "email":"keiteldog@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url":"http:\/\/www.apache.org\/licenses\/LICENSE-2.0.html"
+    },
+    "version":"1.0.0"
+  }
+}
