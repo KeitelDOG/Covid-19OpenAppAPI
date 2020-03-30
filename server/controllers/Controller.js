@@ -129,7 +129,7 @@ class Controller {
 
     // Multiple sorting, support only Where... AND... , but not OR yet
     // ?where=first_name[.]=[.]Keitel,last_name[.]like[.]Jovin
-    let parts = query.where.split(',');
+    let parts = query.where.split('[,]');
     parts.forEach(part => {
       let trio = part.split('[.]');
       if (trio.length === 3) {
@@ -183,7 +183,6 @@ class Controller {
     }
 
     // remove all relations if false
-    console.log('relations', query.relations);
     if (query.relations === 'false') {
       delete this.attribs.withRelated;
       return;

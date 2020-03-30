@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 
 const apiRoute = require('./routes/api');
+const webRoute = require('./routes/web');
 const Scheduler = require('./scheduler');
 
 const port = process.env.APP_PORT || 3500;
@@ -19,7 +20,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 Scheduler.start();
 
 app.get('/', function(req, res) {
-  //console.log('Megalobiz Main App server home');
   res.status(200)
     .send({
       server: 'Open App',
@@ -33,6 +33,9 @@ app.get('/', function(req, res) {
 
 // API ENDPOINTS --
 app.use('/api', apiRoute);
+
+// WEB ENDPOINTS --
+app.use('/', webRoute);
 
 
 app.listen(port, function() {
