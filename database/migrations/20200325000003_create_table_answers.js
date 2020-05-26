@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary();
     table.integer('header_id').unsigned();
     table.integer('question_id').unsigned();
-    table.string('ques_answer', 1000).notNullable().index();
+    table.string('ques_answer', 500).notNullable().index();
 
     table.dateTime('created_at').defaultTo(knex.fn.now());
     table.dateTime('updated_at').defaultTo(knex.fn.now());
