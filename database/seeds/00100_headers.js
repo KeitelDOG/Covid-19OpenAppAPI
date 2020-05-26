@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
       sex: Math.random() >= 0.5 ? 'F' : 'M',
       age: parseInt(Math.random() * 100 + 1),
       phone: faker.phone.phoneNumber().slice(0, 100),
-
+      code: `PATCOV#${i}${Date.now()}`
     });
   }
 

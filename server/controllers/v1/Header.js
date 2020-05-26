@@ -12,6 +12,9 @@ class HeaderController extends Controller {
 
   insert(req, res, next) {
     let data = req.body;
+    //Math.random().toString(36).slice(2)
+    data.code = `PATCOV#${Math.random(Date.now()).toString(36).slice(10)}${Date.now()}`.toUpperCase();
+
     let dataAnswer = data.answer;
     delete data.answer;
 
