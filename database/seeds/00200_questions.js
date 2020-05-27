@@ -28,19 +28,19 @@ exports.seed = function(knex, Promise) {
       choice: "HTA,Diabète,Asthme,Cancer,Aucun,Autres",
     },
     {
-      id: 4,
+      id: 5,
       title: "Habitudes ( Avez-vous l’habitude de consommer ces substances)?",
       type: 1,
       choice: "Alcool,Tabac,Mariguana,Café,Aucun,Autres",
     },
     {
-      id: 5,
+      id: 6,
       title: "Quel est votre groupe sanguin?",
       type: 2,
       choice: "A+, A-, B+, B-, AB+, AB-, O+, O-",
     },
     {
-      id: 6,
+      id: 7,
       title: "Avez-vous une allergie ? si oui précisez ?",
       type: 3,
       choice: "",
