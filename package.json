@@ -1,5 +1,5 @@
 {
-  "name": "Covid-19OpenAppAPI",
+  "name": "covid19_openapp_api",
   "version": "1.0.0",
   "description": "Express Server used as API for the Covid-19OpenApp application",
   "main": "server/index.js",
